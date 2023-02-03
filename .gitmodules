@@ -1,0 +1,3 @@
+[submodule "proj1"]
+	path = CS61C-SU21-proj1
+	url = git@github.com:unuing/CS61C-SU21-proj1.git
