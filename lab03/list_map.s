@@ -16,6 +16,7 @@ main:
     add a0, s0, x0 # Loads the address of the first node into a0
 
     # Load the address of the "square" function into a1 (hint: check out "la" on the green sheet)
+    la a1, square
     ### YOUR CODE HERE ###
 
 
@@ -35,6 +36,7 @@ main:
     add a0, s0, x0 # Loads the address of the first node into a0
     
     # Load the address of the "decrement" function into a1 (should be very similar to before)
+    la a1, decrement
     ### YOUR CODE HERE ###
 
 
@@ -51,6 +53,10 @@ main:
 
 map:
     # Prologue: Make space on the stack and back-up registers
+    addi sp, sp, -12
+    sw ra, 0(sp)
+    sw s0, 4(sp)
+    sw s1, 8(sp)
     ### YOUR CODE HERE ###
 
     beq a0, x0, done # If we were given a null pointer (address 0), we're done.
@@ -63,30 +69,40 @@ map:
 
     # Load the value of the current node into a0
     # THINK: Why a0?
+    lw a0, 0(s0)
     ### YOUR CODE HERE ###
 
     # Call the function in question on that value. DO NOT use a label (be prepared to answer why).
     # Hint: Where do we keep track of the function to call? Recall the parameters of "map".
+    jalr a1
     ### YOUR CODE HERE ###
 
     # Store the returned value back into the node
     # Where can you assume the returned value is?
+    sw a0, 0(s0)
     ### YOUR CODE HERE ###
 
     # Load the address of the next node into a0
     # The address of the next node is an attribute of the current node.
     # Think about how structs are organized in memory.
+    lw a0, 4(s0)
     ### YOUR CODE HERE ###
 
     # Put the address of the function back into a1 to prepare for the recursion
     # THINK: why a1? What about a0?
+    mv a1, s1
     ### YOUR CODE HERE ###
 
     # Recurse
+    jal map
     ### YOUR CODE HERE ###
 
 done:
     # Epilogue: Restore register values and free space from the stack
+    lw ra, 0(sp)
+    lw s0, 4(sp)
+    lw s1, 8(sp)
+    addi sp, sp, 12
     ### YOUR CODE HERE ###
 
     jr ra # Return to caller
