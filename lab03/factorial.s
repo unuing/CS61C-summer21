@@ -22,16 +22,16 @@ main:
 
 factorial:
     beq a0, zero, exit_factorial
-    mv s1, a0
+    mv t1, a0
     addi a0, a0, -1
     addi sp, sp, -8
-    sw s1, 0(sp)
+    sw t1, 0(sp)
     sw ra, 4(sp)
     jal factorial
-    lw s1, 0(sp)
+    lw t1, 0(sp)
     lw ra, 4(sp)
     addi sp, sp, 8
-    mul a0, s1, a0
+    mul a0, t1, a0
     ret
 exit_factorial:
     li a0, 1
