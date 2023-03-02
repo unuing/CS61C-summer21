@@ -1,0 +1,6 @@
+1. 'la' in line 81 should be 'lw'. 
+2. didn't backup t1-t3 registers before 'jalr s1' in line 80
+3. address of the array isn't s0
+4. the offset should be 4 times the counter
+5. address of the function is simply s1, not the word in the memory location s1 is pointing to
+6. didn't return under the done label
