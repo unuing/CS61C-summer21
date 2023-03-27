@@ -4,3 +4,6 @@
 [submodule "proj2"]
 	path = proj2
 	url = git@github.com:unuing/CS61C-SU21-proj2.git
+[submodule "proj3"]
+	path = proj3
+	url = git@github.com:unuing/CS61C-SU21-proj3.git
